@@ -1,11 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sortable | Homepage</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Superhero Table</title>
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+
 </head>
 <body>
+  <div class="container">
+    <h1>Superhero</h1>
 
+    <!-- Search and Page Size Controls -->
+    <div class="controls">
+      <div class="search-container">
+        <label for="search">Search:</label>
+        <input type="text" id="search" placeholder="Search by name">
+      </div>
+      <div class="page-size-container">
+        <label for="pageSize">Page Size:</label>
+        <select id="pageSize">
+          <option value="10">10</option>
+          <option value="20" selected>20</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="all">All</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Superhero Table -->
+    <div class="table-responsive">
+      <table id="heroTable">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Full Name</th>
+            <th>Powerstats</th>
+            <th>Race</th>
+            <th>Gender</th>
+            <th>Height</th>
+            <th>Weight</th>
+            <th>Place of Birth</th>
+            <th>Alignment</th>
+          </tr>
+        </thead>
+        <tbody id="heroTableBody">
+          <!-- Rows will be populated here dynamically -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="pagination">
+      <button id="prevPage" class="btn">Previous</button>
+      <span id="pageInfo">Page 1</span>
+      <button id="nextPage" class="btn">Next</button>
+    </div>
+  </div>
+
+  <!-- Link to external JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
