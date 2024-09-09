@@ -19,15 +19,20 @@ function renderTable() {
     const tbody = document.querySelector('#heroTable tbody');
     tbody.innerHTML = '';
 
-    const searchTerm = document.getElementById('search').value.toLowerCase();
-    const filteredHeroes = heroes.filter(hero => hero.name.toLowerCase().includes(searchTerm));
+    // Get the search term and normalize it
+    const searchTerm = normalizeString(document.getElementById('search').value);
+
+    // Filter the heroes based on the normalized search term
+    const filteredHeroes = heroes.filter(hero => normalizeString(hero.name).includes(searchTerm));
 
     const sortedHeroes = sortHeroes(filteredHeroes);
 
+    // Pagination logic
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = pageSize === 'all' ? sortedHeroes.length : startIndex + parseInt(pageSize);
     const displayedHeroes = sortedHeroes.slice(startIndex, endIndex);
 
+    // Render table rows
     displayedHeroes.forEach(hero => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -53,6 +58,15 @@ function renderTable() {
     updatePagination(filteredHeroes.length);
 }
 
+// Normalize the string by removing non-alphabetic characters and extra spaces
+function normalizeString(str) {
+    return str
+        .toLowerCase() // Convert to lowercase
+        .replace(/[^a-z\s]/g, '') // Remove non-alphabetic characters
+        .replace(/\s+/g, ' ') // Collapse multiple spaces into one
+        .trim(); // Remove leading/trailing spaces
+}
+
 function setupEventListeners() {
     document.getElementById('search').addEventListener('input', () => {
         currentPage = 1;
@@ -73,7 +87,9 @@ function setupEventListeners() {
     });
 
     document.getElementById('nextPage').addEventListener('click', () => {
-        const maxPages = Math.ceil(heroes.length / pageSize);
+        const searchTerm = document.getElementById('search').value.trim().toLowerCase();
+        const filteredHeroes = heroes.filter(hero => normalizeString(hero.name).includes(searchTerm));
+        const maxPages = Math.ceil(filteredHeroes.length / pageSize);
         if (currentPage < maxPages) {
             currentPage++;
             renderTable();
