@@ -17,7 +17,7 @@ This project was built without using any external libraries or frameworks, relyi
 ## Features
 
 1. **Fetching Data**:
-   - The data is fetched from the [Superhero API](https://rawcdn.githack.com/akabab/superhero-api/0.2.0/api/all.json) using the `fetchAndDisplayHeroes()` function in JavaScript.
+   - The data is fetched from the [Superhero API](https://rawcdn.githack.com/akabab/superhero-api/0.2.0/api/all.json) using the `fetch()` function in JavaScript.
    - Once fetched, the data is cached and used for sorting, filtering, and pagination.
 
 2. **Displaying Data**:
@@ -75,7 +75,7 @@ This project was built without using any external libraries or frameworks, relyi
 ```plaintext
 superhero-data-webpage/
 ├── index.html          # Main HTML file for the web page
-├── script.js              # JavaScript code for fetching and manipulating data
+├── main.js              # JavaScript code for fetching and manipulating data
 └── styles.css          # CSS for styling the page
 ```
 
